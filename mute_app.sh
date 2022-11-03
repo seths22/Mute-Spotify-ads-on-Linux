@@ -6,24 +6,24 @@
 # It works as: mute_application.sh vlc mute OR mute_application.sh vlc unmute
 
 if [ -z "$1" ]; then
-    echo "Please provide me with an application name"
+    # echo "Please provide me with an application name"
     exit 1
 fi
 
 if [ -z "$2" ]; then
-    echo "Please provide me with an action mute/unmute after the application name"
+    # echo "Please provide me with an action mute/unmute after the application name"
     exit 1
 fi
 
 if ! [[ "$2" == "mute" || "$2" == "unmute" ]]; then
-    echo "The 2nd argument must be mute/unmute"
+    # echo "The 2nd argument must be mute/unmute"
     exit 1
 fi
 
 process_id=$(pidof "$1")
 
 if [ $? -ne 0 ]; then
-    echo "There is no such process as "$1""
+    # echo "There is no such process as "$1""
     exit 1
 fi
 
@@ -56,7 +56,7 @@ done < $temp
 rm -f $temp
 
 if [ $current_index -eq -1 ]; then
-    echo "Could not find "$1" in the processes that output sound."
+    # echo "Could not find "$1" in the processes that output sound."
     exit 1
 fi
 

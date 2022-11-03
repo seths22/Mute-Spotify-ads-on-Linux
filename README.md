@@ -2,14 +2,12 @@
 
 This is purely a bash script.
 
-Uses dbus, applicable for systems using PulseAudio. Only works while using Spotify client (doesn't matter how you install it) and not web browser.
+Uses dbus, applicable for systems using PulseAudio.
 
-Mutes and unmutes Spotify within 5 seconds of start and end of Ads.
+Starts Spotify client, and mutes ads with precise timing (will not remain mute into beginning of song)
+
+Requires Spotify client to be installed.
 
 ### Usage:
 
-To use just run `mute_spotify_timer.sh` either using terminal or Alt + F2 launcher or just add it to list of system Startup Applications.
-
-### Maintenance:
-
-I'll make this more efficient when I'll feel free. Meanwhile you can send Pull Requests!
+To use just run `run_spotify.sh` and Spotify will start with the script running in the background
