@@ -19,13 +19,13 @@ while true; do
 	if [[ "$name" = *"Advertisement"* || "$name" = *"Spotify"* || "$name" = "" ]]; then
 		if [ $songChanged == 1 ]; then
 			echo "Muting"
-			~/mute_app.sh spotify mute
 		fi
+		~/mute_app.sh spotify mute
 	else
 		if [ $songChanged == 1 ]; then
 			echo "Unmuting"
-			~/mute_app.sh spotify unmute
 		fi
+		~/mute_app.sh spotify unmute
 	fi
 	prevName="$name"
 	sleep 0.5
