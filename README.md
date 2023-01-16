@@ -6,7 +6,7 @@ Uses dbus, applicable for systems using PulseAudio.
 
 Starts Spotify client, and mutes ads with precise timing
 
-Requires Spotify client to be installed. If you are using the Flatpak version of spotify, replace the first line in run-spotify.sh with the following:
+Requires Spotify client to be installed. If you are using the Flatpak version of spotify, replace the second line in `run-spotify.sh` with the following:
 `flatpak run com.spotify.Client > /dev/null 2>&1 &`
 
 ### Usage:
