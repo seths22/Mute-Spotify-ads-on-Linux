@@ -28,5 +28,5 @@ while true; do
 		~/mute_app.sh spotify unmute
 	fi
 	prevName="$name"
-	sleep 0.5
+	sleep 0.1
 done

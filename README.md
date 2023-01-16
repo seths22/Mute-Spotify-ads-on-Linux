@@ -1,13 +1,14 @@
-# Spotify Ads muter for Linux
+# Script to mute Spotify audio ads in Linux
 
 This is purely a bash script.
 
 Uses dbus, applicable for systems using PulseAudio.
 
-Starts Spotify client, and mutes ads with precise timing (will not remain mute into beginning of song)
+Starts Spotify client, and mutes ads with precise timing
 
-Requires Spotify client to be installed.
+Requires Spotify client to be installed. If you are using the Flatpak version of spotify, replace the first line in run-spotify.sh with the following:
+`flatpak run com.spotify.Client > /dev/null 2>&1 &`
 
 ### Usage:
 
-To use just run `run_spotify.sh` and Spotify will start with the script running in the background
+Run the script `run_spotify.sh` and Spotify will start with the script running in a terminal. To exit, close the terminal (simply closing the Spotify client will leave the script running).
