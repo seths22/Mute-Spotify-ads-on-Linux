@@ -17,16 +17,16 @@ while true; do
 	fi
 
 	if [[ "$name" = *"Advertisement"* || "$name" = *"Spotify"* || "$name" = "" ]]; then
+		~/Spotify-Ads-Muter-Linux/mute_app.sh spotify mute
 		if [ $songChanged == 1 ]; then
 			echo "Muting"
 		fi
-		~/mute_app.sh spotify mute
 	else
+		~/Spotify-Ads-Muter-Linux/mute_app.sh spotify unmute
 		if [ $songChanged == 1 ]; then
 			echo "Unmuting"
 		fi
-		~/mute_app.sh spotify unmute
 	fi
 	prevName="$name"
-	sleep 0.1
+	sleep 1
 done

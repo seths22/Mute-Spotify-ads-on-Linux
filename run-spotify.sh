@@ -1,3 +1,3 @@
 #!/bin/bash
-flatpak run com.spotify.Client > /dev/null 2>&1 &
-./mute_spotify_ads.sh 2>/dev/null
+spotify > /dev/null 2>&1 &
+~/Spotify-Ads-Muter-Linux/mute_spotify_ads.sh 2>/dev/null
