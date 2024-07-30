@@ -4,29 +4,31 @@ prevName=""
 while true; do
 	# get Spotify playing song name
 	
-	name=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata | sed -n '/title/{n;p}' | cut -d '"' -f 2`
+	song=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata | sed -n '/title/{n;p}' | cut -d '"' -f 2`
+
+    artist=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata | sed -n '/artist/{n;n;p}' | cut -d '"' -f 2`
 	
-	if [[ "$name" != "$prevName" ]]; then
+	if [[ "$song" != "$prevName" ]]; then
 		songChanged=1
 	else
 		songChanged=0
 	fi
 
 	if [ $songChanged == 1 ]; then
-		echo $name
+		echo "${artist}: ${song}"
 	fi
 
-	if [[ "$name" = *"Advertisement"* || "$name" = *"Spotify"* || "$name" = "" ]]; then
-		~/Spotify-Ads-Muter-Linux/mute_app.sh spotify mute
+	if [[ "$song" = *"Advertisement"* || "$artist" = *"Advertisement"* || "$song" = *"Spotify"* || "$song" = "" ]]; then
+		pactl set-sink-mute @DEFAULT_SINK@ 1
 		if [ $songChanged == 1 ]; then
 			echo "Muting"
 		fi
 	else
-		~/Spotify-Ads-Muter-Linux/mute_app.sh spotify unmute
+		pactl set-sink-mute @DEFAULT_SINK@ 0
 		if [ $songChanged == 1 ]; then
 			echo "Unmuting"
 		fi
 	fi
-	prevName="$name"
+	prevName="$song"
 	sleep 1
 done
