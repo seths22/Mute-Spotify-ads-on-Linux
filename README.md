@@ -2,9 +2,9 @@
 
 This is purely a bash script.
 
-Uses dbus, applicable for systems using PulseAudio.
+Requires pipewire-pulse to work.
 
-Starts Spotify client, and mutes ads with precise timing
+Starts Spotify client and mutes audio ads of any length, without muting songs.
 
 Requires Spotify client to be installed. If you are using the Flatpak version of spotify, replace the second line in `run-spotify.sh` with the following:
 `flatpak run com.spotify.Client > /dev/null 2>&1 &`
