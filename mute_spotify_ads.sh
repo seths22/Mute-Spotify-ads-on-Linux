@@ -18,7 +18,7 @@ while true; do
 		echo "${artist}: ${song}"
 	fi
 
-	if [[ "$song" = *"Advertisement"* || "$artist" = *"Advertisement"* || "$song" = *"Spotify"* || "$song" = "" ]]; then
+	if [[ "$song" = *"Advertisement"* || "$artist" = *"Advertisement"* || "$song" = *"Spotify"* || "$artist" = *"Spotify"* || "$song" = "" || "$artist" = "" ]]; then
 		pactl set-sink-mute @DEFAULT_SINK@ 1
 		if [ $songChanged == 1 ]; then
 			echo "Muting"
