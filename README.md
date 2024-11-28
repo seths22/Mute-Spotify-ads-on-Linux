@@ -13,3 +13,5 @@ Requires Spotify client to be installed. If you are using the Flatpak version of
 
 Run the script `run_spotify.sh` and Spotify will start with the script running in a terminal. To exit, close the terminal (simply closing the Spotify client will leave the script running).
 To work properly, all files must be stored in the same directory.
+
+Note: this script works with music only. Podcasts are recognized as ads, and thus are muted. Eventually I may try to find a way to fix this. In the meantime, if you want to listen to podcasts you must open Spotify without this script.
