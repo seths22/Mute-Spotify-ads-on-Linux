@@ -1,11 +1,11 @@
 #!/bin/bash
 
 prevName=""
-spotifyRunning=0
+spotifyStarted=0
 while true; do
     numSpotifyProc=`ps aux | grep -c /usr/share/spotify`
     if [ "$numSpotifyProc" != "1" ]; then
-        spotifyRunning=1
+        spotifyStarted=1
 	    # get Spotify playing song name
 	    
 	    song=`dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:org.mpris.MediaPlayer2.Player string:Metadata | sed -n '/title/{n;p}' | cut -d '"' -f 2`
@@ -35,10 +35,12 @@ while true; do
 	    fi
 	    prevName="$song"
     else
-        if [ $spotifyRunning == 1 ]; then
-            echo "Spotify is not running : unmuting"
-            spotifyRunning=0
+        if [ $spotifyStarted == 1 ]; then
+            # unmute
             pactl set-sink-mute @DEFAULT_SINK@ 0
+            # fix bug related to frequency of ads playing
+            rm ~/.config/spotify/Users/*/ad-state-storage.bnk
+            exit 0
         fi
     fi
     sleep 0.5
