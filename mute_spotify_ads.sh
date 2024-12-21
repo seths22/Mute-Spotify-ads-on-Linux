@@ -2,6 +2,7 @@
 
 prevName=""
 spotifyStarted=0
+muted=0
 while true; do
     numSpotifyProc=`ps aux | grep -c /usr/share/spotify`
     if [ "$numSpotifyProc" != "1" ]; then
@@ -18,20 +19,21 @@ while true; do
 		    songChanged=0
 	    fi
 
-	    if [ $songChanged == 1 ]; then
-		    echo "${artist}: ${song}"
-	    fi
-
-	    if [[ "$song" = *"Advertisement"* || "$artist" = *"Advertisement"* || "$song" = *"Spotify"* || "$artist" = *"Spotify"* || "$song" = "" || "$artist" = "" ]]; then		    
-		    if [ $songChanged == 1 ]; then
-			    echo "Muting"
+	    if [[ "$artist" = "" ]]; then	    
+            if [ $muted == 0 ]; then
+                echo "Advertisement: Muting"
                 pactl set-sink-mute @DEFAULT_SINK@ 1
-		    fi
+                muted=1
+            fi
 	    else		   
 		    if [ $songChanged == 1 ]; then
-			    echo "Unmuting"
-                pactl set-sink-mute @DEFAULT_SINK@ 0
+			    echo "${artist}: ${song}"                
 		    fi
+            if [ $muted == 1 ]; then
+                echo "Unmuting"
+                pactl set-sink-mute @DEFAULT_SINK@ 0
+                muted=0
+            fi
 	    fi
 	    prevName="$song"
     else
